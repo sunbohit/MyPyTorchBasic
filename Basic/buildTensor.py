@@ -19,3 +19,5 @@ torch.add(a,b,out=res)
 print(res)
 a.add_(b)
 print(a)
+
+print(a[:,1])

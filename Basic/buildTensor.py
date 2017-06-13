@@ -33,7 +33,12 @@ print(d)
 import numpy as np
 e = np.ones(4)
 f = torch.from_numpy(e)
-
-f.add_(2)
+np.add(e,1,out=e)
 print(e)
 print(f)
+
+if torch.cuda.is_available():
+	print("CUDA Available")
+	f = f.cuda()
+else:
+	print('None CUDA')

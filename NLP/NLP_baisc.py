@@ -44,3 +44,6 @@ y = autograd.Variable( torch.Tensor([4., 5., 6]), requires_grad=True )
 z = x + y
 
 print(z.creator)
+
+s = z.sum()
+s.backward()

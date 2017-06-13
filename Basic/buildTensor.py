@@ -29,3 +29,11 @@ d = c.numpy()
 c.add_(3)
 print(c)
 print(d)
+
+import numpy as np
+e = np.ones(4)
+f = torch.from_numpy(e)
+
+f.add_(2)
+print(e)
+print(f)

@@ -38,8 +38,6 @@ print(x.view(2, 12))
 print(x.view(2, -1))
 
 x = autograd.Variable( torch.Tensor([1., 2., 3]), requires_grad=True )
-
-# You can also do all the same operations you did with tensors with Variables.
 y = autograd.Variable( torch.Tensor([4., 5., 6]), requires_grad=True )
 z = x + y
 
@@ -47,3 +45,15 @@ print(z.creator)
 
 s = z.sum()
 s.backward()
+print(x.grad)
+
+x = torch.randn((2,2))
+y = torch.randn((2,2))
+z = x + y
+var_x = autograd.Variable( x )
+var_y = autograd.Variable( y )
+var_z = var_x + var_y
+print(var_z.creator)
+var_z_data = var_z.data
+new_var_z = autograd.Variable( var_z_data )
+print(new_var_z.creator)#None

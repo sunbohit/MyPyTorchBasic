@@ -24,3 +24,8 @@ print(a[:,1])
 
 c = torch.ones(7)
 print(c)
+
+d = c.numpy()
+c.add_(3)
+print(c)
+print(d)

@@ -36,3 +36,11 @@ x = torch.randn(2, 3, 4)
 print(x)
 print(x.view(2, 12))
 print(x.view(2, -1))
+
+x = autograd.Variable( torch.Tensor([1., 2., 3]), requires_grad=True )
+
+# You can also do all the same operations you did with tensors with Variables.
+y = autograd.Variable( torch.Tensor([4., 5., 6]), requires_grad=True )
+z = x + y
+
+print(z.creator)

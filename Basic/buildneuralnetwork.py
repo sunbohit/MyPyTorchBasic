@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
+import torch.optim as optim
 
 class NeuralNetwork(nn.Module):
 	def __init__(self):
@@ -39,8 +40,6 @@ input_data = Variable(torch.randn(1,1,30,30))
 output_result = neu(input_data)
 print(output_result)
 
-neu.zero_grad()
-
 target=Variable(torch.arange(1,11))
 print(target)
 
@@ -49,3 +48,17 @@ loss = loss_func(output_result, target)
 print(loss)
 print(loss.creator)
 print(loss.creator.previous_functions[0][0])
+
+'''
+neu.zero_grad()
+print(neu.conv_1.bias.grad)
+loss.backward()
+print(neu.conv_1.bias.grad)
+'''
+opt = optim.SGD(neu.parameters(), lr=0.1)
+opt.zero_grad()
+loss = loss_func(output_result, target)
+loss.backward()
+print(neu.conv_1.bias)
+opt.step()
+print(neu.conv_1.bias)

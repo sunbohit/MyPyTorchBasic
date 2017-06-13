@@ -19,3 +19,6 @@ T_data = [[[1.,2.], [3.,4.]],
           [[5.,6.], [7.,8.]]]
 T = torch.Tensor(T_data)
 print(T)
+
+x = torch.randn((3, 4, 5))
+print(x)

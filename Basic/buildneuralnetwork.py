@@ -8,7 +8,7 @@ class NeuralNetwork(nn.Module):
 		super(NeuralNetwork,self).__init__()
 		self.conv_1 = nn.Conv2d(1,8,3)
 		self.conv_2 = nn.Conv2d(8,16,3)
-		self.fullconnect_1 = nn.Linear(16*3*3,128)
+		self.fullconnect_1 = nn.Linear(16*6*6,128)
 		self.fullconnect_2 = nn.Linear(128,64)
 		self.fullconnect_3 = nn.Linear(64,10)
 
@@ -19,6 +19,7 @@ class NeuralNetwork(nn.Module):
 		x = F.relu(self.fullconnect_1(x))
 		x = F.relu(self.fullconnect_2(x))
 		x = self.fullconnect_3(x)
+		return x
 
 	def num_features(self,x):
 		num_feature = 1
@@ -33,3 +34,18 @@ paras = list(neu.parameters())
 print(len(paras))
 for i in range(len(paras)):
 	print(paras[i].size())
+
+input_data = Variable(torch.randn(1,1,30,30))
+output_result = neu(input_data)
+print(output_result)
+
+neu.zero_grad()
+
+target=Variable(torch.arange(1,11))
+print(target)
+
+loss_func = nn.MSELoss()
+loss = loss_func(output_result, target)
+print(loss)
+print(loss.creator)
+print(loss.creator.previous_functions[0][0])

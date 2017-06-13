@@ -5,7 +5,7 @@ from torch.autograd import Variable
 
 class NeuralNetwork(nn.Module):
 	def __init__(self):
-		super(NeuralNetwork,self).__init__(self)
+		super(NeuralNetwork,self).__init__()
 		self.conv_1 = nn.Conv2d(1,8,3)
 		self.conv_2 = nn.Conv2d(8,16,3)
 		self.fullconnect_1 = nn.Linear(16*3*3,128)
@@ -29,3 +29,7 @@ class NeuralNetwork(nn.Module):
 neu = NeuralNetwork()
 print(neu)
 
+paras = list(neu.parameters())
+print(len(paras))
+for i in range(len(paras)):
+	print(paras[i].size())

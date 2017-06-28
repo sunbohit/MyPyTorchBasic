@@ -12,3 +12,13 @@ train_dataset = dsets.CIFAR10(root='../data/',
                                train=True, 
                                transform=transforms.ToTensor(),
                                download=True)
+
+image, label = train_dataset[0]
+print(image.size())
+print(label)
+
+train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
+                                           batch_size=100, 
+                                           shuffle=True,
+                                           num_workers=2)
+

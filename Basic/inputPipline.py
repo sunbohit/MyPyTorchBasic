@@ -22,3 +22,22 @@ train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                            shuffle=True,
                                            num_workers=2)
 
+data_iter = iter(train_loader)
+images, labels = data_iter.next()
+
+for images, labels in train_loader:
+	pass
+
+class CustomDataset(data.Dataset):
+	def __init__(self):
+		pass
+	def __getitem__(self, index):
+		pass
+	def __len__(self):
+		return 0 
+
+custom_dataset = CustomDataset()
+train_loader = torch.utils.data.DataLoader(dataset=custom_dataset,
+                                           batch_size=100, 
+                                           shuffle=True,
+                                           num_workers=2)

@@ -21,9 +21,18 @@ print(word_to_ix)
 VOCAB_SIZE = len(word_to_ix)
 NUM_LABELS = 2
 
-class Classifier(nn.Module): # inheriting from nn.Module!
+class Classifier(nn.Module):
 	def __init__(self, num_labels, vocab_size):
 		super(Classifier, self).__init__()
 		self.linear = nn.Linear(vocab_size, num_labels)
 	def forward(self, bow_vec):
-		return F.log_softmax(self.linear(bow_vec)
+		return F.log_softmax(self.linear(bow_vec))
+
+def make_bow_vector(sentence, word_to_ix):
+    vec = torch.zeros(len(word_to_ix))
+	for word in sentence:
+		vec[word_to_ix[word]] += 1
+	return vec.view(1, -1)
+
+def make_target(label, label_to_ix):
+	return torch.LongTensor([label_to_ix[label]])

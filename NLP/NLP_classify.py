@@ -29,10 +29,16 @@ class Classifier(nn.Module):
 		return F.log_softmax(self.linear(bow_vec))
 
 def make_bow_vector(sentence, word_to_ix):
-    vec = torch.zeros(len(word_to_ix))
+	vec = torch.zeros(len(word_to_ix))
 	for word in sentence:
 		vec[word_to_ix[word]] += 1
 	return vec.view(1, -1)
 
 def make_target(label, label_to_ix):
 	return torch.LongTensor([label_to_ix[label]])
+
+
+model = Classifier(NUM_LABELS, VOCAB_SIZE)
+
+for param in model.parameters():
+	print(param)

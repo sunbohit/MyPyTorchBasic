@@ -20,3 +20,10 @@ print(word_to_ix)
 
 VOCAB_SIZE = len(word_to_ix)
 NUM_LABELS = 2
+
+class Classifier(nn.Module): # inheriting from nn.Module!
+	def __init__(self, num_labels, vocab_size):
+		super(Classifier, self).__init__()
+		self.linear = nn.Linear(vocab_size, num_labels)
+	def forward(self, bow_vec):
+		return F.log_softmax(self.linear(bow_vec)

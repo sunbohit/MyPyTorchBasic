@@ -42,3 +42,8 @@ model = Classifier(NUM_LABELS, VOCAB_SIZE)
 
 for param in model.parameters():
 	print(param)
+
+sample = data[0]
+bow_vector = make_bow_vector(sample[0], word_to_ix)
+log_probs = model(autograd.Variable(bow_vector))
+print(log_probs)

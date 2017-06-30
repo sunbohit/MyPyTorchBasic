@@ -17,3 +17,4 @@ print(data)
 print(F.softmax(data))
 print(F.softmax(data).sum())
 print(F.log_softmax(data))
+

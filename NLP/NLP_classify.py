@@ -11,3 +11,12 @@ data = [ ("把 东 西 拿 给 我".split(), "Chinese"),
 
 test_data = [ ("我 不 明 白 这 些 东 西".split(), "Chinese"),("it is lost on me".split(), "English")]
 
+word_to_ix = {}
+for sent, _ in data + test_data:
+	for word in sent:
+		if word not in word_to_ix:
+			word_to_ix[word] = len(word_to_ix)
+print(word_to_ix)
+
+VOCAB_SIZE = len(word_to_ix)
+NUM_LABELS = 2

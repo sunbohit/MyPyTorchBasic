@@ -59,7 +59,7 @@ print( next(model.parameters())[:,word_to_ix["西"]] )
 loss_function = nn.NLLLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.1)
 
-for epoch in xrange(100):
+for epoch in range(100):
 	for instance, label in data:
 		model.zero_grad()
 
@@ -71,3 +71,9 @@ for epoch in xrange(100):
 		loss = loss_function(log_probs, target)
 		loss.backward()
 		optimizer.step()
+
+for instance, label in test_data:
+	bow_vec = autograd.Variable(make_bow_vector(instance, word_to_ix))
+	log_probs = model(bow_vec)
+	print(log_probs)
+print( next(model.parameters())[:,word_to_ix["西"]] )

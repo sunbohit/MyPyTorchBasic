@@ -47,3 +47,11 @@ sample = data[0]
 bow_vector = make_bow_vector(sample[0], word_to_ix)
 log_probs = model(autograd.Variable(bow_vector))
 print(log_probs)
+
+label_to_ix = { "Chinese": 0, "English": 1 }
+
+for instance, label in test_data:
+	bow_vec = autograd.Variable(make_bow_vector(instance, word_to_ix))
+	log_probs = model(bow_vec)
+	print(log_probs)
+print( next(model.parameters())[:,word_to_ix["西"]] )
